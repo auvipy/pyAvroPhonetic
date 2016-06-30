@@ -2,10 +2,6 @@
 pyAvroPhonetic
 ==============
 
-**NOTICE:**: This repository is not maintained any longer. Please take a look at this `auvipy's fork`_, for further developments.
-
-----
-
 A Python implementation of the popular Bengali phonetic-typing software
 `Avro Phonetic`_.
 
@@ -19,10 +15,8 @@ that converts Bangla written in Roman script to its phonetic
 equivalent in Bangla. It implements the *Avro Phonetic Dictionary
 Search Library* by `Mehdi Hasan Khan`_.
 
-Currently supported and tested Python versions are 2.5, 2.6 and
-2.7. The code has not been tested on Python 3, but porting it to
-Python 3 is on the agenda. It will be possible once the simplejson
-library is stable for Python 3.
+Currently supported and tested Python versions are 2.7 and
+3.5.
 
 *N.B. This package is under development and is not yet fit for
 production use.*
@@ -64,7 +58,6 @@ Without Pip
 
     $ git clone https://github.com/kaustavdm/pyAvroPhonetic
     $ cd pyAvroPhonetic
-    $ python setup.py build
     $ sudo python setup.py install
 
 **Option 4. Using Git in a Virtualenv (needs git and virtualenv):**
@@ -76,7 +69,6 @@ Without Pip
     $ source bin/activate
     $ git clone https://github.com/kaustavdm/pyAvroPhonetic
     $ cd pyAvroPhonetic
-    $ python setup.py build
     $ python setup.py install
 
 Usage
@@ -86,7 +78,7 @@ At present, only the text parser has been implemented. It can be accessed as:
 
 ::
 
-    >>> from pyavrophonetic import avro
+    >>> from pyavrophonetic as avro
     >>> avro.parse('aami banglay gaan gai')
 
 Contributing
@@ -188,4 +180,3 @@ The full license text can be found in ``LICENSE``.
    :target: https://travis-ci.org/kaustavdm/pyAvroPhonetic
 .. _Md Enzam Hossain: https://github.com/ienzam
 .. _Sarim Khan: https://github.com/sarim
-.. _auvipy's fork: https://github.com/auvipy/pyAvroPhonetic

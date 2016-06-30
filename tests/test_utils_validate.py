@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-
 """Provides test cases for pyavrophonetic.avro.utils.validate
 
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
 
@@ -89,17 +88,14 @@ class TestUtilsValidate(unittest.TestCase):
         uppercase.
         """
         # 'ABOL taBOL' should become 'abOl tabOl'
-        self.assertEquals(validate.fix_string_case('ABOL taBOl'),
-                          'abOl tabOl')
+        self.assertEqual(validate.fix_string_case('ABOL taBOl'), 'abOl tabOl')
         # 'KhiCuRi' should become 'khicuRi'
-        self.assertEquals(validate.fix_string_case('KhiCuRi'),
-                          'khicuRi')
+        self.assertEqual(validate.fix_string_case('KhiCuRi'), 'khicuRi')
         # 'KaTh-BuRO' should become 'kaTh-buRO'
-        self.assertEquals(validate.fix_string_case('KaTh-BuRO'),
-                          'kaTh-buRO')
+        self.assertEqual(validate.fix_string_case('KaTh-BuRO'), 'kaTh-buRO')
         # 'raMgoRurer Chana' should become 'ramgoRurer chana'
-        self.assertEquals(validate.fix_string_case('raMgoRurer Chana'),
-                          'ramgoRurer chana')
+        self.assertEqual(
+            validate.fix_string_case('raMgoRurer Chana'), 'ramgoRurer chana')
 
     def test_is_exact(self):
         """Test exact search response of needle in haystack"""
@@ -110,3 +106,7 @@ class TestUtilsValidate(unittest.TestCase):
         # Test with substring out of string's range
         self.assertFalse(validate.is_exact('a', 'a', 1, 2, False))
         self.assertTrue(validate.is_exact('a', 'a', 1, 2, True))
+
+
+if __name__ == '__main__':
+    unittest.main()
