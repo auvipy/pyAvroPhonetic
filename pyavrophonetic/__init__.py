@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-
 """Python implementation of Avro Phonetic.
 
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
 
@@ -23,5 +22,9 @@ along with pyAvroPhonetic.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 
-__version_info__ = ('0', '1', '3-p02')
+from pyavrophonetic.avro import parse
+
+
+__all__ = ['parse']
+__version_info__ = ('0', '1', '4')
 __version__ = '.'.join(__version_info__)

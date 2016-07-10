@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-
 """Provides the main library for Avro Phonetic
 
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
 
@@ -23,20 +22,19 @@ along with pyAvroPhonetic.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 
-
 # Imports
 from pyavrophonetic.utils import validate
 from pyavrophonetic.utils import utf
 from pyavrophonetic import config
-
 
 # Constants
 PATTERNS = config.AVRO_DICT['data']['patterns']
 NON_RULE_PATTERNS = [p for p in PATTERNS if 'rules' not in p]
 RULE_PATTERNS = [p for p in PATTERNS if 'rules' in p]
 
+
 def parse(text):
-    """Parses input text, matches and replaces using avrodict
+    """Parses input text, matches and replaces using avrodict.
 
     If a valid replacement is found, returns the replaced string. If
     no replacement is found, returns the input text.
@@ -79,16 +77,17 @@ def parse(text):
                 output.append(match["replaced"])
                 cur_end = cur + len(match["found"])
             else:
-            # if non rule patterns have not matched, try rule patterns
+                # if non rule patterns have not matched, try rule patterns
                 match = match_rule_patterns(fixed_text, cur)
                 # Check if rule patterns have matched
                 if match["matched"]:
                     # Update cur_end as cursor + length of match found
-                    cur_end =  cur + len(match["found"])
+                    cur_end = cur + len(match["found"])
                     # Process its rules
-                    replaced = process_rules(rules = match["rules"],
-                                             fixed_text = fixed_text,
-                                             cur = cur, cur_end = cur_end)
+                    replaced = process_rules(rules=match["rules"],
+                                             fixed_text=fixed_text,
+                                             cur=cur,
+                                             cur_end=cur_end)
                     # If any rules match, output replacement from the
                     # rule, else output it's default top-level/default
                     # replacement
@@ -108,8 +107,9 @@ def parse(text):
     # End looping through input text and produce output
     return ''.join(output)
 
+
 def match_non_rule_patterns(fixed_text, cur=0):
-    """Matches given text at cursor position with non rule patterns
+    """Matches given text at cursor position with non rule patterns.
 
     Returns a dictionary of three elements:
 
@@ -121,14 +121,15 @@ def match_non_rule_patterns(fixed_text, cur=0):
      """
     pattern = exact_find_in_pattern(fixed_text, cur, NON_RULE_PATTERNS)
     if len(pattern) > 0:
-        return {"matched": True, "found": pattern[0]['find'],
+        return {"matched": True,
+                "found": pattern[0]['find'],
                 "replaced": pattern[0]['replace']}
     else:
-        return {"matched": False, "found": None,
-                "replaced": fixed_text[cur]}
+        return {"matched": False, "found": None, "replaced": fixed_text[cur]}
+
 
 def match_rule_patterns(fixed_text, cur=0):
-    """Matches given text at cursor position with rule patterns
+    """Matches given text at cursor position with rule patterns.
 
     Returns a dictionary of four elements:
 
@@ -142,19 +143,27 @@ def match_rule_patterns(fixed_text, cur=0):
     pattern = exact_find_in_pattern(fixed_text, cur, RULE_PATTERNS)
     # if len(pattern) == 1:
     if len(pattern) > 0:
-        return {"matched": True, "found": pattern[0]['find'],
-                "replaced": pattern[0]['replace'], "rules": pattern[0]['rules']}
+        return {"matched": True,
+                "found": pattern[0]['find'],
+                "replaced": pattern[0]['replace'],
+                "rules": pattern[0]['rules']}
     else:
-        return {"matched": False, "found": None,
-                "replaced": fixed_text[cur], "rules": None}
+        return {"matched": False,
+                "found": None,
+                "replaced": fixed_text[cur],
+                "rules": None}
+
 
 def exact_find_in_pattern(fixed_text, cur=0, patterns=PATTERNS):
-    """Returns pattern items that match given text, cur position and pattern"""
-    return [x for x in patterns if (cur + len(x['find']) <= len(fixed_text))
-             and x['find'] == fixed_text[cur:(cur + len(x['find']))]]
+    """Returns pattern items that match given text, cur position and pattern."""
+    return [x
+            for x in patterns
+            if (cur + len(x['find']) <= len(fixed_text)) and x['find'] ==
+            fixed_text[cur:(cur + len(x['find']))]]
 
-def process_rules(rules, fixed_text, cur = 0, cur_end = 1):
-    """Process rules matched in pattern and returns suitable replacement
+
+def process_rules(rules, fixed_text, cur=0, cur_end=1):
+    """Process rules matched in pattern and returns suitable replacement.
 
     If any rule's condition is satisfied, output the rules "replace",
     else output None
@@ -182,8 +191,9 @@ def process_rules(rules, fixed_text, cur = 0, cur_end = 1):
     else:
         return None
 
+
 def process_match(match, fixed_text, cur, cur_end):
-    """Processes a single match in rules"""
+    """Processes a single match in rules."""
     # Set our tools
     # -- Initial/default value for replace
     replace = True
@@ -207,8 +217,7 @@ def process_match(match, fixed_text, cur, cur_end):
         # Conditions: XORd with negative
         if (not ((chk < 0 and match['type'] == 'prefix') or
                  (chk >= len(fixed_text) and match['type'] == 'suffix') or
-                 validate.is_punctuation(fixed_text[chk]))
-            ^ negative):
+                 validate.is_punctuation(fixed_text[chk])) ^ negative):
             replace = False
     # -- Vowels -- Checks: 1. Cursor should not be at first character
     # -- if prefix or last character if suffix, 2. Character at chk
@@ -216,19 +225,17 @@ def process_match(match, fixed_text, cur, cur_end):
     # -- AND 2
     elif scope == 'vowel':
         if (not (((chk >= 0 and match['type'] == 'prefix') or
-                  (chk < len(fixed_text) and match['type'] == 'suffix'))
-                 and validate.is_vowel(fixed_text[chk]))
-            ^ negative):
-            replace =  False
+                  (chk < len(fixed_text) and match['type'] == 'suffix')) and
+                 validate.is_vowel(fixed_text[chk])) ^ negative):
+            replace = False
     # -- Consonants -- Checks: 1. Cursor should not be at first
     # -- character if prefix or last character if suffix, 2. Character
     # -- at chk should be a consonant. 3. 'negative' will invert the
     # -- value of 1 AND 2
     elif scope == 'consonant':
         if (not (((chk >= 0 and match['type'] == 'prefix') or
-                  (chk < len(fixed_text) and match['type'] == 'suffix'))
-                 and validate.is_consonant(fixed_text[chk]))
-            ^ negative):
+                  (chk < len(fixed_text) and match['type'] == 'suffix')) and
+                 validate.is_consonant(fixed_text[chk])) ^ negative):
             replace = False
     # -- Exacts
     elif scope == 'exact':

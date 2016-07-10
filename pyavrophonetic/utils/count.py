@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+"""Provides count functions for pyAvroPhonetic.
 
-"""Provides count functions for pyAvroPhonetic
-
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
 
@@ -23,21 +22,21 @@ along with pyAvroPhonetic.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 
-
 # Imports
 from pyavrophonetic import config
 
 
 def count_vowels(text):
-    """Count number of occurrences of vowels in a given string"""
+    """Count number of occurrences of vowels in a given string."""
     count = 0
     for i in text:
         if i.lower() in config.AVRO_VOWELS:
             count += 1
     return count
 
+
 def count_consonants(text):
-    """Count number of occurrences of consonants in a given string"""
+    """Count number of occurrences of consonants in a given string."""
     count = 0
     for i in text:
         if i.lower() in config.AVRO_CONSONANTS:
