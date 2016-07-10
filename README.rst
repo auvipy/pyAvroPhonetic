@@ -78,7 +78,7 @@ At present, only the text parser has been implemented. It can be accessed as:
 
 ::
 
-    >>> from pyavrophonetic as avro
+    >>> from pyavrophonetic import avro
     >>> avro.parse('aami banglay gaan gai')
 
 Contributing
