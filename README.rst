@@ -143,6 +143,7 @@ Acknowledgements
    the Avro dictionary and the way it works
  - `Sarim Khan`_ for writing ibus-avro which helped to clarify my
    concepts further
+ - `Asif Saif Uddin`_ for takeover of the current maintainership role. 
 
 License
 =======
@@ -174,9 +175,9 @@ The full license text can be found in ``LICENSE``.
 .. _jsAvroPhonetic: https://github.com/torifat/jsAvroPhonetic
 .. _PEP 8: http://www.python.org/dev/peps/pep-0008/
 .. _PEP 257: http://www.python.org/dev/peps/pep-0257/
-.. |Master| image:: https://travis-ci.org/kaustavdm/pyAvroPhonetic.png?branch=master
-   :target: https://travis-ci.org/kaustavdm/pyAvroPhonetic
-.. |Develop| image:: https://travis-ci.org/kaustavdm/pyAvroPhonetic.png?branch=develop
-   :target: https://travis-ci.org/kaustavdm/pyAvroPhonetic
+.. |Master| image:: https://travis-ci.org/TrendBreaker/pyAvroPhonetic.png?branch=master
+   :target: https://travis-ci.org/TrendBreaker/pyAvroPhonetic
+.. |Develop| image:: https://travis-ci.org/TrendBreaker/pyAvroPhonetic.png?branch=develop
+   :target: https://travis-ci.org/TrendBreaker/pyAvroPhonetic
 .. _Md Enzam Hossain: https://github.com/ienzam
 .. _Sarim Khan: https://github.com/sarim
