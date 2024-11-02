@@ -148,7 +148,7 @@ Acknowledgements
 License
 =======
 
-Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in>.
+Copyright (C) 2024 Asif Saif Uddin <auvipy@gmail.com>.
 
 ::
 
