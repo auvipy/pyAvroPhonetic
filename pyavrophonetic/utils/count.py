@@ -3,7 +3,8 @@
 
 -----------------------------------------------------------------------
 
-Copyright (C) 2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
+Copyright (C) 2014-2034 Asif Saif Uddin <auvipy@gmail.com>.
+      2013 Kaustav Das Modak <kaustav.dasmodak@yahoo.co.in.
 
 This file is part of pyAvroPhonetic.
 
